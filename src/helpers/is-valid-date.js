@@ -8,7 +8,7 @@ export const isValidDayString = dateString => dateString && dateString.length ==
 
 // min year 1900 max year 2010
 const isValidYear = year => year >= 1900 && year <=2010;
-const isValidMonth = month => month >= 1 && month <= 12;
+const isValidMonth = month => month > 0 && month <= 12;
 const isValidDay = (year, month, day) => {
   let days = 0;
   switch(month) {
@@ -23,7 +23,7 @@ const isValidDay = (year, month, day) => {
     case 1: case 3: case 5: case 7: case 8: case 10: case 12:
       days = 31;
       break;
-    // reset months with 30 days
+    // rest of months with 30 days
     default:
       days = 30;
       break;
@@ -38,20 +38,24 @@ export const isValidDate = dateString => {
   return isValidDay(date[2], date[1], date[0]) && isValidMonth(date[1]) && isValidYear(date[2]);
 }
 
-export const isValidDateRange = (dateString1, dateString2) => {
-  if (!isValidDateRange(dateString1) || !isValidDateRange(dateString2)) return false;
-
+// use to arrange the order of two dates
+export const isStartDateLessThanEndDate = (dateString1, dateString2) => {
+  // if (!isValidDate(dateString1) || !isValidDate(dateString2)) return false;
   const date1 = dateString1.split(' ').map(Number);
   const date2 = dateString2.split(' ').map(Number);
 
   // compare year
   if (date1[2] > date2[2]) {
+    console.log("comhere for the year")
     return false;
   // compare month
   } else if (date1[1] > date2[1]) {
+    console.log("comhere for the month")
+
     return false;
   // compare day
   } else if (date1[0] > date2[0]) {
+    console.log("comhere for the day")
     return false;
   }
 

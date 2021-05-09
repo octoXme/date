@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, Fade } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+
 import BaseTextInput from 'components/base-text-input';
 import DateTextInput from 'components/date-masked-input';
-
-import { isValidDate, isValidDateRange } from 'helpers/is-valid-date';
+import InfoBox from 'components/info-box';
+import { isValidDate } from 'helpers/is-valid-date';
 import getDayDifference from 'helpers/get-day-difference';
 
 const useStyles = makeStyles(theme => ({
@@ -28,39 +29,57 @@ const useStyles = makeStyles(theme => ({
       flex: '1 1 auto',
     },
     '& > *:not(:last-child)': {
-      marginBottom: theme.spacing(2),
+      marginBottom: theme.spacing(1),
       [theme.breakpoints.up('sm')]: {
         marginRight: theme.spacing(2),
         marginBottom: 0,
       },
     },
   },
-  button: {
+  buttons: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    '& > *:not(last-child)': {
+      marginBottom: theme.spacing(1),
+    },
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row',
+      '& > *:not(last-child)': {
+        marginRight: theme.spacing(1),
+        marginBottom: 0,
+        minWidth: 128,
+      },
+    },
   },
   results: {
-
+    padding: theme.spacing(3),
   },
 }));
 
 const Home = () => {
   const classes = useStyles();
-  const [error, setError] = useState(null);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [isStartDateValid, setIsStartDateValid] = useState(true);
-  const [isEndDateValid, setIsEndDateValid] = useState(true);
+  const initialStates = {
+    startDate: '25 06 1980',
+    endDate: '03 10 1985',
+    isStartDateValid: true,
+    isEndDateValid: true,
+    isStartDateTouched: false,
+    isEndDateTouched: false,
+    results: null,
+  };
+  const [state, setState] = useState(initialStates);
+  const { startDate, endDate, isStartDateValid, isEndDateValid, isStartDateTouched, isEndDateTouched, results} = state;
+  const showStartDateError = isStartDateTouched && !isStartDateValid;
+  const showEndDateError = isEndDateTouched && !isEndDateValid;
 
-  console.log(getDayDifference("25 06 2000", "25 07 2001"))
+  // reset to initial states
+  const onClear = () => setState(initialStates);
 
   const onCalculateDates = () => {
-    if (isStartDateValid && isStartDateValid && isValidDateRange(startDate, endDate)) {
-      // calculate the day difference
-
-    } else {
-      setError("Invalid Dates");
-    }
+    if (!isStartDateValid || !isStartDateValid) return;
+    // calculate the day difference
+    setState({ ...state, results: getDayDifference(startDate, endDate, true) })
   }
 
   return (
@@ -72,43 +91,70 @@ const Home = () => {
       </AppBar>
       <main className={classes.root}>
         <div className={classes.content}>
-          <Typography gutterBottom>To calculate the difference between two days, please enter a start and end date</Typography>
-          <Typography variant="body2">Year range are limited from 1900 to 2010</Typography>
-          <div className={classes.dates}>
-            <BaseTextInput
-              label="Start Date"
-              inputComponent={DateTextInput}
-              onBlur={event => {
-                setStartDate(event.target.value);
-                setIsStartDateValid(isValidDate(event.target.value));
-              }}
-              error={!isStartDateValid}
-            />
-            <BaseTextInput
-              label="End Date"
-              inputComponent={DateTextInput}
-              onBlur={event => {
-                setEndDate(event.target.value)
-                setIsEndDateValid(isValidDate(event.target.value));
-              }}
-              error={!isEndDateValid}
-            />
-          </div>
-          <div className={classes.button}>
-            <Button
-              color="secondary"
-              variant="contained"
-              disabled={startDate === null || endDate === null}
-              onClick={onCalculateDates}
-            >
-              Go
-            </Button>
-          </div>
-          {/* TODO error */}
-          {error && <div>{error}</div>}
-          <div className={classes.results}>
-
-          </div>
+          <InfoBox variant="info">
+            <Typography>To calculate the difference between two days</Typography>
+            <Typography variant="caption">Date format: DD MM YYYY, Date Range: 1900 to 2010</Typography>
+          </InfoBox>
+          <form>
+            <div className={classes.dates}>
+              <BaseTextInput
+                label="Start Date"
+                inputComponent={DateTextInput}
+                value={startDate}
+                onChange={event => {
+                  setState({ ...state, startDate: event.target.value });
+                  if (!isStartDateTouched) {
+                    setState({ ...state, isStartDateTouched: true });
+                  }
+                }}
+                onBlur={event => {
+                  const { value } = event.target;
+                  if (!value) return;
+                  setState({ ...state, isStartDateValid: isValidDate(value) });
+                }}
+                error={showStartDateError}
+                helperText={showStartDateError ? 'Invalid date format' : null}
+              />
+              <BaseTextInput
+                label="End Date"
+                inputComponent={DateTextInput}
+                value={endDate}
+                onChange={event => { 
+                  setState({ ...state, endDate: event.target.value });
+                  if (!isEndDateTouched) {
+                    setState({ ...state, isEndDateTouched: true });
+                  }
+                }}
+                onBlur={event => {
+                  const { value } = event.target;
+                  if (!value) return;
+                  setState({ ...state, isEndDateValid: isValidDate(value) });
+                }}
+                error={showEndDateError}
+                helperText={showEndDateError ? 'Invalid date format' : null}
+              />
+            </div>
+            <div className={classes.buttons}>
+              <Button
+                color="secondary"
+                variant="contained"
+                onClick={onCalculateDates}
+              >
+                Go
+              </Button>
+              <Button onClick={onClear} variant="outlined">
+                Reset
+              </Button>
+            </div>
+          </form>
+          {results !== null && (
+            <Fade in={results !== null}>
+              <div className={classes.results}>
+                <Typography gutterBottom variant="h6" color="textSecondary">Output</Typography>
+                <Typography>{`${results.startDate}, ${results.endDate}, ${results.totalDays}`}</Typography>
+              </div>
+            </Fade>
+          )}
         </div>
       </main>
     </>

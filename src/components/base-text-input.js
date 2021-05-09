@@ -1,6 +1,7 @@
 import React from 'react';
 import { InputLabel, FilledInput, FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import HelperText from 'components/helper-text';
 
 const useStyles = makeStyles(theme => ({
   inputRoot: {
@@ -18,9 +19,12 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#fff5f5',
     boxShadow: '0 0 0 2px #ff6b81',
   },
+  helperText: {
+    marginTop: theme.spacing(1),
+  },
 }));
 
-const BaseFilledInput = ({ name, label, ...other }) => {
+const BaseFilledInput = ({ name, label, error, helperText, ...other }) => {
   const classes = useStyles();
 
   return (
@@ -28,6 +32,7 @@ const BaseFilledInput = ({ name, label, ...other }) => {
       <InputLabel htmlFor={name}>{label}</InputLabel>
       <FilledInput
         disableUnderline
+        error={error}
         classes={{
           root: classes.inputRoot,
           error: classes.inputError,
@@ -35,6 +40,11 @@ const BaseFilledInput = ({ name, label, ...other }) => {
         autoComplete="no"
         {...other}
       />
+      {helperText && (
+        <div className={classes.helperText}>
+          <HelperText error={error} helperText={helperText} />
+        </div>
+      )}
     </FormControl>
   );
 };

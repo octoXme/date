@@ -1,6 +1,22 @@
+import { isStartDateLessThanEndDate, isValidDate } from './is-valid-date';
 import isLeapYear from './is-leap-year';
+import getDayNumber from './get-day-number';
+import getNumberOfLeapYears from './get-number-of-leap-years';
 
-const getDayDifference = (dateString1, dateString2) => {
+const getDayDifference = (dateString1, dateString2, validated = false) => {
+  let startDate = dateString1;
+  let endDate = dateString2;
+
+  // check date string are valid dates??? TODO
+  if (!validated && (!isValidDate(startDate) || !isValidDate(endDate))) return;
+
+  console.log("isStartDateLessThanEndDate(startDate, endDate)", isStartDateLessThanEndDate(startDate, endDate))
+  // check date order
+  if (!isStartDateLessThanEndDate(startDate, endDate)) {
+    startDate = dateString2;
+    endDate = dateString1;
+  }
+
   const date1 = dateString1.split(' ').map(Number);
   const date2 = dateString2.split(' ').map(Number);
 
@@ -15,7 +31,19 @@ const getDayDifference = (dateString1, dateString2) => {
 
   let totalDays = 0;
 
-  console.log("year1 + 1", year1 + 1, year2 - 1)
+  const { dayNumber: startDayNumber, totalDays: startDayTotal } = getDayNumber(year1, month1, day1);
+  const { dayNumber: endDayNumber } = getDayNumber(year2, month2, day2);
+
+  // const getEndDate = getDayNumber(year2, month2, day2);
+
+  totalDays = startDayTotal - startDayNumber;
+
+
+  // console.log("year1 + 1", startDayNumber, startDayTotal)
+
+  totalDays = totalDays + endDayNumber;
+
+  // getNumberOfLeapYears(year1 + 1, year2 - 1)
 
   // if the difference between two days are less than 1 we only have calculate the month and day
 
@@ -30,7 +58,12 @@ const getDayDifference = (dateString1, dateString2) => {
 
   // calculate the rest
 
-  return totalDays;
+  return ({
+    startDate,
+    endDate,
+    totalDays,
+    isValid: true,
+  });
 }
 
 export default getDayDifference;
