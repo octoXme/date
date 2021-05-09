@@ -1,11 +1,14 @@
+import getDayNumber from './get-day-number';
+import isLeapYear from './is-leap-year';
+
 /**
- * use link below to check results
+ * use link below for outcome results
  * https://miniwebtool.com/day-of-year-calendar
  */
-import getDayNumber from './get-day-number';
 
 it('return correct days in a year', () => {
-  expect(getDayNumber(2020, 8, 18)).toEqual({ "dayNumber": 231, "totalDays": 366 });
-  expect(getDayNumber(1988, 10, 2)).toEqual({ "dayNumber": 276, "totalDays": 366 });
-  expect(getDayNumber(2021, 5, 8)).toEqual({ "dayNumber": 128, "totalDays": 365 });
+  expect(getDayNumber(8, 18, isLeapYear(2020))).toEqual(231);
+  expect(getDayNumber(10, 2, isLeapYear(1988))).toEqual(276);
+  expect(getDayNumber(5, 8, isLeapYear(2021))).toEqual(128);
+  expect(getDayNumber(1, 5, isLeapYear(1996))).toEqual(5);
 });

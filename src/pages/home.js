@@ -39,29 +39,25 @@ const useStyles = makeStyles(theme => ({
   buttons: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    '& > *:not(last-child)': {
-      marginBottom: theme.spacing(1),
-    },
-    [theme.breakpoints.up('sm')]: {
-      flexDirection: 'row',
-      '& > *:not(last-child)': {
-        marginRight: theme.spacing(1),
-        marginBottom: 0,
-        minWidth: 128,
+    alignItems: 'center',
+    '& > *': {
+      maxWidth: 256,
+      width: '100%',
+      '&:not(last-child)': {
+        marginBottom: theme.spacing(1),
       },
     },
   },
   results: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(2, 3),
   },
 }));
 
 const Home = () => {
   const classes = useStyles();
   const initialStates = {
-    startDate: '25 06 1980',
-    endDate: '03 10 1985',
+    startDate: '',
+    endDate: '',
     isStartDateValid: true,
     isEndDateValid: true,
     isStartDateTouched: false,
@@ -92,13 +88,13 @@ const Home = () => {
       <main className={classes.root}>
         <div className={classes.content}>
           <InfoBox variant="info">
-            <Typography>To calculate the difference between two days</Typography>
+            <Typography>Calculate the difference between two dates</Typography>
             <Typography variant="caption">Date format: DD MM YYYY, Date Range: 1900 to 2010</Typography>
           </InfoBox>
           <form>
             <div className={classes.dates}>
               <BaseTextInput
-                label="Start Date"
+                label="Date 1"
                 inputComponent={DateTextInput}
                 value={startDate}
                 onChange={event => {
@@ -116,7 +112,7 @@ const Home = () => {
                 helperText={showStartDateError ? 'Invalid date format' : null}
               />
               <BaseTextInput
-                label="End Date"
+                label="Date 2"
                 inputComponent={DateTextInput}
                 value={endDate}
                 onChange={event => { 
@@ -142,7 +138,7 @@ const Home = () => {
               >
                 Go
               </Button>
-              <Button onClick={onClear} variant="outlined">
+              <Button onClick={onClear}>
                 Reset
               </Button>
             </div>
@@ -151,7 +147,7 @@ const Home = () => {
             <Fade in={results !== null}>
               <div className={classes.results}>
                 <Typography gutterBottom variant="h6" color="textSecondary">Output</Typography>
-                <Typography>{`${results.startDate}, ${results.endDate}, ${results.totalDays}`}</Typography>
+                <Typography variant="h6">{`${results.startDate}, ${results.endDate}, ${results.differenceInDays}`}</Typography>
               </div>
             </Fade>
           )}

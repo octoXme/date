@@ -1,4 +1,4 @@
-import { isValidDate, isStartDateLessThanEndDate } from './is-valid-date';
+import { isValidDate, isStartDateLessThanEndDate, isValidDayString } from './is-valid-date';
 
 /**
  * check input date is valid
@@ -19,4 +19,11 @@ it('check date ordering', () => {
   expect(isStartDateLessThanEndDate('08 01 1995', '24 12 2005')).toEqual(true);
   expect(isStartDateLessThanEndDate('15 04 1969', '15 04 1945')).toEqual(false);
   expect(isStartDateLessThanEndDate('25 06 1980', '03 10 1985')).toEqual(true);
+});
+
+// required format DD MM YYYY
+it('given day string is valid format', () => {
+  expect(isValidDayString('12 14 2000')).toEqual(true);
+  expect(isValidDayString('12 2 1987')).toEqual(false);
+  expect(isValidDayString('12021987')).toEqual(false);
 });

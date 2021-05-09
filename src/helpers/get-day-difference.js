@@ -7,18 +7,17 @@ const getDayDifference = (dateString1, dateString2, validated = false) => {
   let startDate = dateString1;
   let endDate = dateString2;
 
-  // check date string are valid dates??? TODO
+  // check date string are valid dates??? TODO return isValid false???
   if (!validated && (!isValidDate(startDate) || !isValidDate(endDate))) return;
 
-  console.log("isStartDateLessThanEndDate(startDate, endDate)", isStartDateLessThanEndDate(startDate, endDate))
   // check date order
   if (!isStartDateLessThanEndDate(startDate, endDate)) {
     startDate = dateString2;
     endDate = dateString1;
   }
 
-  const date1 = dateString1.split(' ').map(Number);
-  const date2 = dateString2.split(' ').map(Number);
+  const date1 = startDate.split(' ').map(Number);
+  const date2 = endDate.split(' ').map(Number);
 
   const year1 = date1[2];
   const year2 = date2[2];
@@ -27,41 +26,44 @@ const getDayDifference = (dateString1, dateString2, validated = false) => {
   const month2 = date2[1];
 
   const day1 = date1[0];
-  const day2 = date1[0];
+  const day2 = date2[0];
 
-  let totalDays = 0;
+  let differenceInDays = 0;
+  const isStartLeapYear = isLeapYear(year1);
+  const isEndLeapYear = isLeapYear(year2);
 
-  const { dayNumber: startDayNumber, totalDays: startDayTotal } = getDayNumber(year1, month1, day1);
-  const { dayNumber: endDayNumber } = getDayNumber(year2, month2, day2);
+  const startDayNumber = getDayNumber(month1, day1, isStartLeapYear);
+  const endDayNumber = getDayNumber(month2, day2, isEndLeapYear);
 
-  // const getEndDate = getDayNumber(year2, month2, day2);
-
-  totalDays = startDayTotal - startDayNumber;
-
-
-  // console.log("year1 + 1", startDayNumber, startDayTotal)
-
-  totalDays = totalDays + endDayNumber;
-
-  // getNumberOfLeapYears(year1 + 1, year2 - 1)
-
-  // if the difference between two days are less than 1 we only have calculate the month and day
-
-  // calculate days before 2 years
-  for (var i = year1 + 1; i <= year2 - 1; i++) {
-    if (isLeapYear(i)) {
-      totalDays += 366;
-    } else {
-      totalDays += 365;
+  if (year1 === year2) {
+    differenceInDays = endDayNumber - startDayNumber;
+  } else {
+    differenceInDays = (isStartLeapYear ? 366 : 365) - startDayNumber + endDayNumber;
+    // if the difference between two given years is more than 1 year
+    if (year2 - year1 > 1) {
+      const fromYear = year1 + 1;
+      const toYear = year2;
+      const totalYearsBetween = toYear - fromYear;
+      const totalLeapYears = getNumberOfLeapYears(fromYear, toYear);
+      const daysInCommonYears = (totalYearsBetween - totalLeapYears) * 365;
+      const daysInLeapYears = totalLeapYears * 366; 
+      differenceInDays += daysInCommonYears + daysInLeapYears;
     }
   }
 
-  // calculate the rest
+  // alterative way to calculate between days
+  // for (var i = year1 + 1; i <= year2 - 1; i++) {
+  //   if (isLeapYear(i)) {
+  //     differenceInDays += 366;
+  //   } else {
+  //     differenceInDays += 365;
+  //   }
+  // }
 
   return ({
     startDate,
     endDate,
-    totalDays,
+    differenceInDays,
     isValid: true,
   });
 }

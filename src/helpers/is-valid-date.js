@@ -40,24 +40,15 @@ export const isValidDate = dateString => {
 
 // use to arrange the order of two dates
 export const isStartDateLessThanEndDate = (dateString1, dateString2) => {
-  // if (!isValidDate(dateString1) || !isValidDate(dateString2)) return false;
-  const date1 = dateString1.split(' ').map(Number);
-  const date2 = dateString2.split(' ').map(Number);
+  if (!isValidDate(dateString1) || !isValidDate(dateString2)) return false;
 
-  // compare year
-  if (date1[2] > date2[2]) {
-    console.log("comhere for the year")
-    return false;
-  // compare month
-  } else if (date1[1] > date2[1]) {
-    console.log("comhere for the month")
+  // convert input string format of 'DD MM YYYY' to YYYYMMDD for comparison 
+  let date1 = Number(dateString1.split(' ').reverse().join(''));
+  let date2 = Number(dateString2.split(' ').reverse().join(''));
 
-    return false;
-  // compare day
-  } else if (date1[0] > date2[0]) {
-    console.log("comhere for the day")
-    return false;
+  if (date1 <= date2) {
+    return true;
   }
 
-  return true;
+  return false;
 }

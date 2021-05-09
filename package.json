@@ -36,14 +36,6 @@
           "asyncArrow": "always"
         }
       ],
-      "max-len": [
-        "error",
-        {
-          "code": 150,
-          "ignoreStrings": true,
-          "ignoreTemplateLiterals": true
-        }
-      ],
       "react/jsx-filename-extension": 0,
       "import/no-extraneous-dependencies": 0,
       "implicit-arrow-linebreak": 0,
