@@ -3,7 +3,10 @@
 A simple react application that calculates the number of days between two dates.
 
 ![date-diff](https://user-images.githubusercontent.com/4036584/117652611-b9028580-b1d6-11eb-9228-0baefd395d7c.png)
-[Demo](https://octoxme.github.io/date)
+
+## Demo
+
+[link](https://octoxme.github.io/date)
 
 ## Scripts
 
