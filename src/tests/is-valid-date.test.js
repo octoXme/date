@@ -1,4 +1,4 @@
-import { isValidDate, isStartDateLessThanEndDate, isValidDayString } from './is-valid-date';
+import { isValidDate, isStartDateLessThanEndDate, isValidDayString } from 'helpers/is-valid-date';
 
 /**
  * check input date is valid

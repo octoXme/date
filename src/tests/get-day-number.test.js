@@ -1,5 +1,5 @@
-import getDayNumber from './get-day-number';
-import isLeapYear from './is-leap-year';
+import getDayNumber from 'helpers/get-day-number';
+import isLeapYear from 'helpers/is-leap-year';
 
 /**
  * use link below for outcome results

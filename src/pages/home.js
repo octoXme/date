@@ -58,8 +58,8 @@ const Home = () => {
   const initialStates = {
     startDate: '',
     endDate: '',
-    isStartDateValid: true,
-    isEndDateValid: true,
+    isStartDateValid: false,
+    isEndDateValid: false,
     isStartDateTouched: false,
     isEndDateTouched: false,
     results: null,
@@ -98,8 +98,9 @@ const Home = () => {
                 inputComponent={DateTextInput}
                 value={startDate}
                 onChange={event => {
-                  setState({ ...state, startDate: event.target.value });
-                  if (!isStartDateTouched) {
+                  const { value } = event.target;
+                  setState({ ...state, startDate: value });
+                  if (value && !isStartDateTouched) {
                     setState({ ...state, isStartDateTouched: true });
                   }
                 }}
@@ -147,7 +148,7 @@ const Home = () => {
             <Fade in={results !== null}>
               <div className={classes.results}>
                 <Typography gutterBottom variant="h6" color="textSecondary">Output</Typography>
-                <Typography variant="h6">{`${results.startDate}, ${results.endDate}, ${results.differenceInDays}`}</Typography>
+                <Typography variant="h6">{results}</Typography>
               </div>
             </Fade>
           )}

@@ -7,8 +7,8 @@ const getDayDifference = (dateString1, dateString2, validated = false) => {
   let startDate = dateString1;
   let endDate = dateString2;
 
-  // check date string are valid dates??? TODO return isValid false???
-  if (!validated && (!isValidDate(startDate) || !isValidDate(endDate))) return;
+  // if dayStrings haven't been validate beforehand
+  if (!validated && (!isValidDate(startDate) || !isValidDate(endDate))) return 'Invalid output, please check your inputs';
 
   // check date order
   if (!isStartDateLessThanEndDate(startDate, endDate)) {
@@ -60,12 +60,7 @@ const getDayDifference = (dateString1, dateString2, validated = false) => {
   //   }
   // }
 
-  return ({
-    startDate,
-    endDate,
-    differenceInDays,
-    isValid: true,
-  });
+  return `${startDate}, ${endDate}, ${differenceInDays}`;
 }
 
 export default getDayDifference;

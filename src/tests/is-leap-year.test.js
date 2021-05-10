@@ -1,4 +1,4 @@
-import isLeapYear from './is-leap-year';
+import isLeapYear from 'helpers/is-leap-year';
 
 /**
  * use link below for outcome results
