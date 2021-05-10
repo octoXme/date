@@ -7,7 +7,13 @@
  * work out the total leap years from 0 to endYear
  * use endNumber - startNumber will be the total leap years between two given years
  */
-const leapYearsBefore = year => year / 4 - year / 100 + year / 400;
-const getNumberOfLeapYears = (year1, year2) => Math.ceil(leapYearsBefore(year2) - leapYearsBefore(year1 - 1));
+const leapYearsBefore = yearNumber => {
+  let year = yearNumber;
+  if (typeof year !== 'number') {
+    year = Number(year);
+  }
+  return Math.floor(year / 4 - year / 100 + year / 400);
+};
+export const getNumberOfLeapYears = (year1, year2) => leapYearsBefore(year2) - leapYearsBefore(year1 - 1);
 
 export default getNumberOfLeapYears;

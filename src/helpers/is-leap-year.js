@@ -19,4 +19,3 @@ const isLeapYear = yearNumber => {
 }
 
 export default isLeapYear;
-

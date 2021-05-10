@@ -18,4 +18,5 @@ it('isLeapYear function is valid', () => {
   expect(isLeapYear(2300)).toEqual(false);
   expect(isLeapYear(2500)).toEqual(false);
   expect(isLeapYear(1996)).toEqual(true);
+  expect(isLeapYear(1980)).toEqual(true);
 });

@@ -1,8 +1,9 @@
 # Coding Challenge - Date Difference
 
+A simple react component that calculates the number of days between two dates ([Demo] (https://octoxme.github.io/date/))
 ## Available Scripts (In the project directory)
 
-Please follow the commands below in order to run the app
+Please follow the commands in order to run this app locally
 ### `npm install`
 
 install all dependencies in local node_modules folder
@@ -14,9 +15,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-## Test Script
-
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

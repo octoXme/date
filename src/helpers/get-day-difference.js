@@ -38,14 +38,15 @@ const getDayDifference = (dateString1, dateString2, validated = false) => {
   const endDayNumber = getDayNumber(month2, day2, isEndLeapYear);
 
   // if dates are from the same year,
-  // we only need to know the difference between the endDayNumber and startDayNUmber
+  // we only need to know the difference between the endDayNumber and startDayNumber
   if (year1 === year2) {
     differenceInDays = endDayNumber - startDayNumber;
   } else {
     // calculate the days from start date to the end of year, total number of the start year - day number of start date
     // and the days from the beginning of the year to end date which is the day number of the end date
     differenceInDays = (isStartLeapYear ? 366 : 365) - startDayNumber + endDayNumber;
-    // if the difference between two given years is more than 1 year
+
+    // if the difference between two given calendar years is more than 1 year
     if (year2 - year1 > 1) {
       // fromYear and toYear defines the range between the two given years
       const fromYear = year1 + 1;
@@ -59,15 +60,6 @@ const getDayDifference = (dateString1, dateString2, validated = false) => {
       differenceInDays += daysInCommonYears + daysInLeapYears;
     }
   }
-
-  // alterative way to calculate days inside the range between the two given years
-  // for (var i = year1 + 1; i <= year2 - 1; i++) {
-  //   if (isLeapYear(i)) {
-  //     differenceInDays += 366;
-  //   } else {
-  //     differenceInDays += 365;
-  //   }
-  // }
 
   return `${startDate}, ${endDate}, ${differenceInDays}`;
 }

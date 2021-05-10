@@ -89,7 +89,7 @@ const Home = () => {
         <div className={classes.content}>
           <InfoBox variant="info">
             <Typography>Calculate the difference between two dates</Typography>
-            <Typography variant="caption">Date format: DD MM YYYY, Date Range: 1900 to 2010</Typography>
+            <Typography variant="caption">Date format: DD MM YYYY, Date range: 1900 to 2010</Typography>
           </InfoBox>
           <form>
             <div className={classes.dates}>
@@ -97,17 +97,11 @@ const Home = () => {
                 label="Date 1"
                 inputComponent={DateTextInput}
                 value={startDate}
-                onChange={event => {
-                  const { value } = event.target;
-                  setState({ ...state, startDate: value });
-                  if (value && !isStartDateTouched) {
-                    setState({ ...state, isStartDateTouched: true });
-                  }
-                }}
+                onChange={event => setState({ ...state, startDate: event.target.value, isStartDateTouched: false })}
                 onBlur={event => {
                   const { value } = event.target;
                   if (!value) return;
-                  setState({ ...state, isStartDateValid: isValidDate(value) });
+                  setState({ ...state, isStartDateValid: isValidDate(value), isStartDateTouched: true });
                 }}
                 error={showStartDateError}
                 helperText={showStartDateError ? 'Invalid date format' : null}
@@ -116,16 +110,11 @@ const Home = () => {
                 label="Date 2"
                 inputComponent={DateTextInput}
                 value={endDate}
-                onChange={event => { 
-                  setState({ ...state, endDate: event.target.value });
-                  if (!isEndDateTouched) {
-                    setState({ ...state, isEndDateTouched: true });
-                  }
-                }}
+                onChange={event => setState({ ...state, endDate: event.target.value, isEndDateTouched: false })}
                 onBlur={event => {
                   const { value } = event.target;
                   if (!value) return;
-                  setState({ ...state, isEndDateValid: isValidDate(value) });
+                  setState({ ...state, isEndDateValid: isValidDate(value), isEndDateTouched: true });
                 }}
                 error={showEndDateError}
                 helperText={showEndDateError ? 'Invalid date format' : null}
