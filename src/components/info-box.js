@@ -26,6 +26,8 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     lineHeight: 1.5,
+    display: 'flex',
+    flexDirection: 'column',
   },
 }));
 

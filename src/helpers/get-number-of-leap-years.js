@@ -12,7 +12,8 @@ const leapYearsBefore = yearNumber => {
   if (typeof year !== 'number') {
     year = Number(year);
   }
-  return Math.floor(year / 4 - year / 100 + year / 400);
+
+  return Math.trunc(year / 4) - Math.trunc(year / 100) + Math.trunc(year / 400);
 };
 export const getNumberOfLeapYears = (year1, year2) => leapYearsBefore(year2) - leapYearsBefore(year1 - 1);
 

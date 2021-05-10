@@ -89,7 +89,8 @@ const Home = () => {
         <div className={classes.content}>
           <InfoBox variant="info">
             <Typography>Calculate the difference between two dates</Typography>
-            <Typography variant="caption">Date format: DD MM YYYY, Date range: 1900 to 2010</Typography>
+            <Typography variant="caption">Validate date format: DD MM YYYY</Typography>
+            <Typography variant="caption">Validate date range: 1900 to 2010</Typography>
           </InfoBox>
           <form>
             <div className={classes.dates}>

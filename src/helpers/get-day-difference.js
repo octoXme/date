@@ -48,15 +48,19 @@ const getDayDifference = (dateString1, dateString2, validated = false) => {
 
     // if the difference between two given calendar years is more than 1 year
     if (year2 - year1 > 1) {
-      // fromYear and toYear defines the range between the two given years
-      const fromYear = year1 + 1;
-      const toYear = year2;
-      const totalYearsBetween = toYear - fromYear;
-      const totalLeapYears = getNumberOfLeapYears(fromYear, toYear);
+      // total range of years excluding already counted first year  
+      const totalYearsBetween = year2 - (year1 + 1);
+
+      // calculate the total leap years excluding the already counted end year
+      let totalLeapYears = getNumberOfLeapYears(year1 + 1, year2 - 1);
+
       // total days in common years
       const daysInCommonYears = (totalYearsBetween - totalLeapYears) * 365;
+
       // total days in leap years
       const daysInLeapYears = totalLeapYears * 366; 
+
+      // add the days in common years and days in leaps to the result
       differenceInDays += daysInCommonYears + daysInLeapYears;
     }
   }

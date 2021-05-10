@@ -14,4 +14,10 @@
   expect(getDayDifference('28 02 1996', '28 03 1996')).toEqual('28 02 1996, 28 03 1996, 29');
   expect(getDayDifference('01 05 2020', '10 05 2020')).toEqual('Invalid output, please check your inputs');
   expect(getDayDifference('25 06 1980', '03 10 1985')).toEqual('25 06 1980, 03 10 1985, 1926');
+  expect(getDayDifference('12 10 1976', '14 07 1904')).toEqual('14 07 1904, 12 10 1976, 26388');
+  expect(getDayDifference('25 06 1928', '03 10 1964')).toEqual('25 06 1928, 03 10 1964, 13249');
+  expect(getDayDifference('25 06 1928', '03 10 1965')).toEqual('25 06 1928, 03 10 1965, 13614'); // start is leap year
+  expect(getDayDifference('11 12 1909', '19 08 1961')).toEqual('11 12 1909, 19 08 1961, 18879'); // end is leap year
+  expect(getDayDifference('25 02 1928', '03 10 1965')).toEqual('25 02 1928, 03 10 1965, 13735');
+  expect(getDayDifference('25 02 1909', '01 01 1961')).toEqual('25 02 1909, 01 01 1961, 18938');
  });
