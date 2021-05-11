@@ -10,7 +10,7 @@ A simple react application that calculates the number of days between two dates.
 
 ## Set up and run the app
 
-Please use the following commands in order to run the app locally
+Please use the following commands to run the app locally
 ### `npm install`
 
 Install all dependencies in local node_modules folder
