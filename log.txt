@@ -1,0 +1,115 @@
+commit ca428d013afa41cd3b02a635f07a1b02a78796e8
+Author: Jin C <gin85cc@gmail.com>
+Date:   Tue May 11 20:20:26 2021 +1000
+
+    add log.txt to git ignore
+
+commit 87c53c252fdfca51305a07d300d3441397d5b46d
+Author: Jin C <gin85cc@gmail.com>
+Date:   Tue May 11 20:16:48 2021 +1000
+
+    documenting functions
+    
+    add alt way to calculate days between
+    add documentation to functions
+
+commit 98e54baee86129d98abfbef6a773be6e1b012edf
+Author: Jin C <gin85cc@gmail.com>
+Date:   Mon May 10 23:21:17 2021 +1000
+
+    Update README.md
+
+commit 8882ce49feaaf7b41f6712e5bd4a0a7f690112a5
+Author: Jin C <gin85cc@gmail.com>
+Date:   Mon May 10 23:19:04 2021 +1000
+
+    Clean up get day difference function logic
+    
+    clean up function logic
+    add test case to test with start or end date are being leap year
+
+commit 4f563f2a65eab924ce79c5819b39f17d35529804
+Author: Jin C <gin85cc@gmail.com>
+Date:   Mon May 10 21:15:01 2021 +1000
+
+    Update README.md
+    
+    add screenshot for demo page
+
+commit b35bcd7d617557caa11c679cd217cfaa5f9448ba
+Author: Jin C <gin85cc@gmail.com>
+Date:   Mon May 10 21:05:43 2021 +1000
+
+    Update README.md
+
+commit f45230b0d637a6ee9408fd55c20613dcc0cff10a
+Author: Jin C <gin85cc@gmail.com>
+Date:   Mon May 10 20:59:32 2021 +1000
+
+    fix get number of leap year function
+    
+    fix get number of leap year function rounding up incorrect results
+    remove comment out codes
+    improve input
+    add more test cases
+    add demo link to readme
+
+commit 22821742c7d86b8cb836b609fa79ee32bdc9cd5f
+Author: Jin C <gin85cc@gmail.com>
+Date:   Mon May 10 18:44:58 2021 +1000
+
+    Add github page
+    
+    add github page - test
+    update comments
+
+commit cc53a8d0f9659a32126e67403403b1bda82b1c18
+Author: Jin C <gin85cc@gmail.com>
+Date:   Mon May 10 18:02:56 2021 +1000
+
+    update return results
+    
+    Update getDayDifference to return desire string
+    move all test files into tests folder
+    update readme file, remove default react app text
+
+commit 340add16b57e5e9d2f3625f510debc150b1c1ef1
+Author: Jin C <gin85cc@gmail.com>
+Date:   Sun May 9 22:35:20 2021 +1000
+
+    finish getDayDifference function
+    
+    clean up get day difference function
+    clean up logs
+    update date compare method
+    update test cases
+
+commit 61720ac285802cef42feb72dd02b106ddced5a7c
+Author: Jin C <gin85cc@gmail.com>
+Date:   Sun May 9 17:36:08 2021 +1000
+
+    Add function tests
+    
+    remove unused theme color
+    add tests for functions (not yet complete)
+    add info box component to display info and error messages
+
+commit fa5bba36b4c3e3ac60ec16a1325e824f6512cc7c
+Author: Jin C <gin85cc@gmail.com>
+Date:   Fri May 7 23:51:21 2021 +1000
+
+    initial commit
+    
+    install create-react-app
+    install material-ui
+    add basic layout
+    add basic input with mask
+    add function to check if given year is leap year
+    add function to check if given date string is valid
+    add function to check if given date strings are within valid date range
+
+commit c7dd402c27600b5f61d92cbb2404b2ae7cc4fe4b
+Author: Jin C <gin85cc@gmail.com>
+Date:   Fri May 7 16:52:57 2021 +1000
+
+    Initial commit
