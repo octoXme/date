@@ -52,7 +52,7 @@ export const isValidDate = dateString => {
 }
 
 /**
- * check if first date string is less than second date string
+ * Check if first date string is less than second date string
  * Use to arrange the order of two dates
  * @param {string} dateString1 
  * @param {string} dateString2 
