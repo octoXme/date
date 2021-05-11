@@ -8,7 +8,7 @@ A simple react application that calculates the number of days between two dates.
 
 [link](https://octoxme.github.io/date)
 
-## Scripts
+## Set up and run the app
 
 Please the following the commands in order to run the app locally
 ### `npm install`
@@ -19,6 +19,8 @@ Install all dependencies in local node_modules folder
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Run tests
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.

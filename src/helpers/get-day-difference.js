@@ -3,6 +3,13 @@ import isLeapYear from './is-leap-year';
 import getDayNumber from './get-day-number';
 import getNumberOfLeapYears from './get-number-of-leap-years';
 
+/**
+ * Date duration function
+ * @param {string} dateString1 
+ * @param {string} dateString2 
+ * @param {bool} validated 
+ * @returns {string} 'DD MM YYYY, DD MMM YYY, deference'
+ */
 const getDayDifference = (dateString1, dateString2, validated = false) => {
   let startDate = dateString1;
   let endDate = dateString2;
@@ -64,6 +71,15 @@ const getDayDifference = (dateString1, dateString2, validated = false) => {
       differenceInDays += daysInCommonYears + daysInLeapYears;
     }
   }
+
+  // alterative way to calculate the between days use loop (replace line 50 to 64)
+  // for (var i = year1 + 1; i <= year2 - 1; i++) {
+  //   if (isLeapYear(i)) {
+  //     differenceInDays += 366;
+  //   } else {
+  //     differenceInDays += 365;
+  //   }
+  // }
 
   return `${startDate}, ${endDate}, ${differenceInDays}`;
 }

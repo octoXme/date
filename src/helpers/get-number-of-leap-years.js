@@ -5,7 +5,8 @@
  * 
  * work out the total leap years from 0 to startYear (exclusive start year)
  * work out the total leap years from 0 to endYear
- * use endNumber - startNumber will be the total leap years between two given years
+ * @param {*} yearNumber 
+ * @returns {int}
  */
 const leapYearsBefore = yearNumber => {
   let year = yearNumber;
@@ -15,6 +16,12 @@ const leapYearsBefore = yearNumber => {
 
   return Math.trunc(year / 4) - Math.trunc(year / 100) + Math.trunc(year / 400);
 };
+
+/**
+ * @param {*} year1 
+ * @param {*} year2 
+ * @returns {int} total leap years between two given years
+ */
 export const getNumberOfLeapYears = (year1, year2) => leapYearsBefore(year2) - leapYearsBefore(year1 - 1);
 
 export default getNumberOfLeapYears;
