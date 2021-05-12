@@ -72,7 +72,7 @@ const getDayDifference = (dateString1, dateString2, validated = false) => {
     }
   }
 
-  // alterative way to calculate the between days use loop (replace line 50 to 64)
+  // alterative way to calculate the between days use loop
   // for (var i = year1 + 1; i <= year2 - 1; i++) {
   //   if (isLeapYear(i)) {
   //     differenceInDays += 366;
